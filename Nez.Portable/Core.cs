@@ -148,6 +148,7 @@ namespace Nez
 				IsFullScreen = isFullScreen,
 				SynchronizeWithVerticalRetrace = true
 			};
+			graphicsManager = InitializeGraphicsManager(graphicsManager);
 			graphicsManager.DeviceReset += OnGraphicsDeviceReset;
 			graphicsManager.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
 
@@ -167,6 +168,10 @@ namespace Nez
 			RegisterGlobalManager(new RenderTarget());
 		}
 
+		public virtual GraphicsDeviceManager InitializeGraphicsManager(GraphicsDeviceManager manager)
+		{
+			return manager;
+		}
 		void OnOrientationChanged(object sender, EventArgs e)
 		{
 			Emitter.Emit(CoreEvents.OrientationChanged);
